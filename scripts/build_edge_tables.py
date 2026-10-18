@@ -1,6 +1,6 @@
 #An edge table is simply a list of relationships between entities — the input representation we'll use to construct the graph
 
-
+import numpy as np
 from pathlib import Path
 
 import pandas as pd
@@ -89,7 +89,7 @@ def main():
     ):
         drug_id, target_id, diseases = row
 
-        if not isinstance(diseases, (list, tuple)):
+        if not isinstance(diseases, (list, tuple,np.ndarray)):
             continue
 
         for disease in diseases:
@@ -98,7 +98,11 @@ def main():
 
             disease_id = disease.get("diseaseId")
 
-            if pd.isna(disease_id) if disease_id is not None else True:
+            if (
+            disease_id is None
+            or pd.isna(disease_id)
+            or not str(disease_id).strip()
+            ):
                 continue
 
             context_rows.append({
