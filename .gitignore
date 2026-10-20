@@ -60,3 +60,24 @@ htmlcov/
 
 # Node (if any frontend tooling)
 node_modules/
+
+# Secrets / credentials
+*.key
+secrets.*
+api_keys.*
+credentials.*
+config/secrets*
+
+# Tabular data exports (may be large / sensitive)
+*.csv
+*.tsv
+data/*.json
+data/**/*.json
+
+# Model outputs / results
+results/
+outputs/
+checkpoints/
+runs/
+wandb/
+mlruns/
